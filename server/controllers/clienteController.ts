@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Clientes from "../models/clienteModel";
+import { IReqAuth } from "../config/interface";
 
 const clienteController = {
   register: async (req: Request, res: Response) => {
@@ -29,6 +30,26 @@ const clienteController = {
       const cliente = await Clientes.findById(req.params.id);
 
       res.json(cliente);
+    } catch (error: any) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
+  updateCliente: async (req: IReqAuth, res: Response) => {
+    try {
+      const { name } = req.body;
+
+      await Clientes.findByIdAndUpdate({ _id: req.params.id }, { name });
+
+      res.json({ msg: "Alteração feita com sucesso." });
+    } catch (error: any) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
+  deleteCliente: async (req: IReqAuth, res: Response) => {
+    try {
+      await Clientes.findByIdAndDelete({ _id: req.params.id });
+
+      res.json({ msg: "Cliente deletado com sucesso." });
     } catch (error: any) {
       return res.status(500).json({ msg: error.message });
     }
