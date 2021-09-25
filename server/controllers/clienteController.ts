@@ -3,6 +3,9 @@ import Clientes from "../models/clienteModel";
 import { IReqAuth } from "../config/interface";
 
 const clienteController = {
+  //@desc   Register client
+  //@route  POST /api/client
+  //@access Public
   register: async (req: Request, res: Response) => {
     try {
       const { name, sexo, data_nascimento, idade, cidade } = req.body;
@@ -25,6 +28,9 @@ const clienteController = {
       return res.status(500).json({ msg: error });
     }
   },
+  //@desc   Get Client By Id
+  //@route  GET /api/client/id/:id
+  //@access Public
   getClienteById: async (req: Request, res: Response) => {
     try {
       const cliente = await Clientes.findById(req.params.id);
@@ -34,6 +40,23 @@ const clienteController = {
       return res.status(500).json({ msg: error.message });
     }
   },
+  //@desc   Get Client By Name
+  //@route  GET /api/client/name/:name
+  //@access Public
+  getClienteByName: async (req: Request, res: Response) => {
+    try {
+      const cliente = await Clientes.find({
+        name: { $regex: ".*" + req.params.name + ".*" },
+      });
+
+      res.json(cliente);
+    } catch (error: any) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
+  //@desc   Update cliente
+  //@route  PATCH /api/client/id/:id
+  //@access Public
   updateCliente: async (req: IReqAuth, res: Response) => {
     try {
       const { name } = req.body;
@@ -45,6 +68,9 @@ const clienteController = {
       return res.status(500).json({ msg: error.message });
     }
   },
+  //@desc   Delete cliente
+  //@route  DELETE /api/client/id/:id
+  //@access Public
   deleteCliente: async (req: IReqAuth, res: Response) => {
     try {
       await Clientes.findByIdAndDelete({ _id: req.params.id });
