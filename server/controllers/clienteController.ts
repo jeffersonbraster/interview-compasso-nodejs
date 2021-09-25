@@ -28,8 +28,8 @@ const clienteController = {
       return res.status(500).json({ msg: error });
     }
   },
-  //@desc   Get Client By Id
-  //@route  GET /api/client/id/:id
+  //@desc   Get Client By Id or Name
+  //@route  GET /api/client/:param
   //@access Public
   getClienteByIdAndName: async (req: Request, res: Response) => {
     try {
@@ -46,7 +46,7 @@ const clienteController = {
     }
   },
   //@desc   Update cliente
-  //@route  PATCH /api/client/id/:id
+  //@route  PATCH /api/client/:param
   //@access Public
   updateCliente: async (req: IReqAuth, res: Response) => {
     try {
@@ -60,7 +60,7 @@ const clienteController = {
     }
   },
   //@desc   Delete cliente
-  //@route  DELETE /api/client/id/:id
+  //@route  DELETE /api/client/:param
   //@access Public
   deleteCliente: async (req: IReqAuth, res: Response) => {
     try {

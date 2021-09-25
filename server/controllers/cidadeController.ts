@@ -24,6 +24,23 @@ const cidadeController = {
       return res.status(500).json({ msg: error });
     }
   },
+  //@desc   Get Cidades By name or estado
+  //@route  GET /api/cidade/:param
+  //@access Public
+  getCidadeByIdAndName: async (req: Request, res: Response) => {
+    try {
+      const cliente = await Cidades.find({
+        $or: [
+          { name: { $regex: ".*" + req.params.param + ".*" } },
+          { estado: { $regex: ".*" + req.params.param + ".*" } },
+        ],
+      });
+
+      res.json(cliente);
+    } catch (error: any) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
 };
 
 export default cidadeController;
