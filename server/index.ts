@@ -11,6 +11,7 @@ app.use(morgan("dev"));
 
 //routes
 app.use("/api", routes.clienteRoute);
+app.use("/api", routes.cidadeRoute);
 
 //database
 import "./config/database";
