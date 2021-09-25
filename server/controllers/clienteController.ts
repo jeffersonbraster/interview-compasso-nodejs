@@ -31,22 +31,13 @@ const clienteController = {
   //@desc   Get Client By Id
   //@route  GET /api/client/id/:id
   //@access Public
-  getClienteById: async (req: Request, res: Response) => {
+  getClienteByIdAndName: async (req: Request, res: Response) => {
     try {
-      const cliente = await Clientes.findById(req.params.id);
-
-      res.json(cliente);
-    } catch (error: any) {
-      return res.status(500).json({ msg: error.message });
-    }
-  },
-  //@desc   Get Client By Name
-  //@route  GET /api/client/name/:name
-  //@access Public
-  getClienteByName: async (req: Request, res: Response) => {
-    try {
-      const cliente = await Clientes.find({
-        name: { $regex: ".*" + req.params.name + ".*" },
+      const cliente = await Clientes.findOne({
+        $or: [
+          { id: req.params.param },
+          { name: { $regex: ".*" + req.params.param + ".*" } },
+        ],
       });
 
       res.json(cliente);
@@ -61,7 +52,7 @@ const clienteController = {
     try {
       const { name } = req.body;
 
-      await Clientes.findByIdAndUpdate({ _id: req.params.id }, { name });
+      await Clientes.findByIdAndUpdate({ _id: req.params.param }, { name });
 
       res.json({ msg: "Alteração feita com sucesso." });
     } catch (error: any) {
@@ -73,7 +64,7 @@ const clienteController = {
   //@access Public
   deleteCliente: async (req: IReqAuth, res: Response) => {
     try {
-      await Clientes.findByIdAndDelete({ _id: req.params.id });
+      await Clientes.findByIdAndDelete({ _id: req.params.param });
 
       res.json({ msg: "Cliente deletado com sucesso." });
     } catch (error: any) {
