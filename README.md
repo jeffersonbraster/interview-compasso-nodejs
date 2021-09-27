@@ -39,12 +39,12 @@ nodejs challenge for compasso uol.
 #### Update cliente
 
 ```https
-  GET /api/cliente/${param}
+  PATCH /api/cliente/${param}
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `name`      | `string` | **Required**. name to update|
+| `ID`      | `string` | **Required**. ID to update|
 
 
 #### Delete cliente
