@@ -42,6 +42,28 @@ export const validRegisterClient = async (
   next();
 };
 
+export const validUpdateClient = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { name } = req.body;
+
+  const errors = [];
+
+  if (!name) {
+    errors.push("Nome não pode ser vazio.");
+  } else if (name.length < 5) {
+    errors.push("Nome não pode ter menos 5 caracteres.");
+  } else if (name.length > 50) {
+    errors.push("Nome não pode ser maior que 50 caracteres.");
+  }
+
+  if (errors.length > 0) return res.status(400).json({ msg: errors });
+
+  next();
+};
+
 export const validRegisterCidade = async (
   req: Request,
   res: Response,
