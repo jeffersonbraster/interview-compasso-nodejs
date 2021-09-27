@@ -1,9 +1,10 @@
 import express from "express";
 import clienteController from "../controllers/clienteController";
+import { validRegisterClient } from "../middlewares/valid";
 
 const router = express.Router();
 
-router.post("/cliente", clienteController.register);
+router.post("/cliente", validRegisterClient, clienteController.register);
 
 router
   .route("/cliente/:param")

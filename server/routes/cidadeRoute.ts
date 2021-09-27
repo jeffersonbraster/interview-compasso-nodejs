@@ -1,10 +1,11 @@
 import express from "express";
 import cidadeController from "../controllers/cidadeController";
+import { validRegisterCidade } from "../middlewares/valid";
 
 const router = express.Router();
 
-router.post("/cidade", cidadeController.create);
+router.post("/cidade", validRegisterCidade, cidadeController.create);
 
-router.get("/cidade/:param", cidadeController.getCidadeByIdAndName);
+router.get("/cidade/:param", cidadeController.getCidadeByNameAndEstado);
 
 export default router;

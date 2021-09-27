@@ -17,7 +17,7 @@ const cidadeController = {
       await newCidade.save();
 
       return res.json({
-        status: "Cidade criado com sucesso.",
+        msg: "Cidade criado com sucesso.",
         newCidade,
       });
     } catch (error: any) {
@@ -27,7 +27,7 @@ const cidadeController = {
   //@desc   Get Cidades By name or estado
   //@route  GET /api/cidade/:param
   //@access Public
-  getCidadeByIdAndName: async (req: Request, res: Response) => {
+  getCidadeByNameAndEstado: async (req: Request, res: Response) => {
     try {
       const cliente = await Cidades.find({
         $or: [
