@@ -29,14 +29,14 @@ const cidadeController = {
   //@access Public
   getCidadeByNameAndEstado: async (req: Request, res: Response) => {
     try {
-      const cliente = await Cidades.find({
+      const cidade = await Cidades.find({
         $or: [
           { name: { $regex: ".*" + req.params.param + ".*" } },
           { estado: { $regex: ".*" + req.params.param + ".*" } },
         ],
       });
 
-      res.json(cliente);
+      res.json(cidade);
     } catch (error: any) {
       return res.status(500).json({ msg: error.message });
     }

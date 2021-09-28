@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import Clientes from "../models/clienteModel";
-import { IReqAuth } from "../config/interface";
 
 const clienteController = {
   //@desc   Register client
@@ -31,13 +30,22 @@ const clienteController = {
   //@desc   Get Client By Id or Name
   //@route  GET /api/client/:param
   //@access Public
-  getClienteByIdAndName: async (req: Request, res: Response) => {
+  getClienteById: async (req: Request, res: Response) => {
     try {
-      const cliente = await Clientes.findOne({
-        $or: [
-          { id: req.params.param },
-          { name: { $regex: ".*" + req.params.param + ".*" } },
-        ],
+      const cliente = await Clientes.findById(req.params.param);
+
+      res.json(cliente);
+    } catch (error: any) {
+      return res.status(500).json({ msg: error.message });
+    }
+  },
+  //@desc   Get Client By Id or Name
+  //@route  GET /api/client/name/:param
+  //@access Public
+  getClienteByName: async (req: Request, res: Response) => {
+    try {
+      const cliente = await Clientes.find({
+        name: { $regex: ".*" + req.params.param + ".*" },
       });
 
       res.json(cliente);
@@ -48,7 +56,7 @@ const clienteController = {
   //@desc   Update cliente
   //@route  PATCH /api/client/:param
   //@access Public
-  updateCliente: async (req: IReqAuth, res: Response) => {
+  updateCliente: async (req: Request, res: Response) => {
     try {
       const { name } = req.body;
 
@@ -62,7 +70,7 @@ const clienteController = {
   //@desc   Delete cliente
   //@route  DELETE /api/client/:param
   //@access Public
-  deleteCliente: async (req: IReqAuth, res: Response) => {
+  deleteCliente: async (req: Request, res: Response) => {
     try {
       await Clientes.findByIdAndDelete({ _id: req.params.param });
 

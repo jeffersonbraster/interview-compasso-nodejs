@@ -19,7 +19,7 @@ export const validRegisterClient = async (
 
   if (!sexo) {
     errors.push("Sexo não pode ser vazio.");
-  } else if (sexo !== "masculino" && "feminino" && "outros") {
+  } else if (sexo !== "masculino" && sexo !== "feminino" && sexo !== "outros") {
     errors.push("Insire um sexo valido: masculino, feminino ou outros.");
   }
 

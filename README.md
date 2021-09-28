@@ -1,7 +1,6 @@
-# Interview Compasso NodeJS 
+# Interview Compasso NodeJS
 
 nodejs challenge for compasso uol.
-
 
 ## API Reference
 
@@ -13,28 +12,33 @@ nodejs challenge for compasso uol.
   POST /api/cliente
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `name` | `string` | **Required**. name of client|
-| `sexo` | `string` | **Required**. sexo of client|
-| `data_nascimento` | `string` | **Required**. birth date of client|
-| `idade` | `number` | **Required**. age of client|
-| `cidade` | `string` | **Required**. city of client|
+| Parameter         | Type     | Description                        |
+| :---------------- | :------- | :--------------------------------- |
+| `name`            | `string` | **Required**. name of client       |
+| `sexo`            | `string` | **Required**. sexo of client       |
+| `data_nascimento` | `string` | **Required**. birth date of client |
+| `idade`           | `number` | **Required**. age of client        |
+| `cidade`          | `string` | **Required**. city of client       |
 
-#### Get cliente
+#### Get cliente By ID
 
 ```http
   GET /api/cliente/${param}
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. ID of the client|
+| Parameter | Type     | Description                    |
+| :-------- | :------- | :----------------------------- |
+| `id`      | `string` | **Required**. ID of the client |
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `name`      | `string` | **Required**. Name of the client|
+#### Get cliente By Name
 
+```http
+  GET /api/cliente/name/${param}
+```
+
+| Parameter | Type     | Description                      |
+| :-------- | :------- | :------------------------------- |
+| `name`    | `string` | **Required**. Name of the client |
 
 #### Update cliente
 
@@ -42,16 +46,15 @@ nodejs challenge for compasso uol.
   PATCH /api/cliente/${param}
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `ID`      | `string` | **Required**. ID to update|
-
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `ID`      | `string` | **Required**. ID to update |
 
 #### Delete cliente
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. ID of the client|
+| Parameter | Type     | Description                    |
+| :-------- | :------- | :----------------------------- |
+| `id`      | `string` | **Required**. ID of the client |
 
 ### Cidade
 
@@ -61,10 +64,10 @@ nodejs challenge for compasso uol.
   POST /api/cidade
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `name` | `string` | **Required**. name of city|
-| `estado` | `string` | **Required**. name of state|
+| Parameter | Type     | Description                 |
+| :-------- | :------- | :-------------------------- |
+| `name`    | `string` | **Required**. name of city  |
+| `estado`  | `string` | **Required**. name of state |
 
 #### Get cidade
 
@@ -72,21 +75,20 @@ nodejs challenge for compasso uol.
   GET /api/cidade/${param}
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `name`      | `string` | **Required**. name of city|
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `name`    | `string` | **Required**. name of city |
 
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `estado`      | `string` | **Required**. name of state|
+| Parameter | Type     | Description                 |
+| :-------- | :------- | :-------------------------- |
+| `estado`  | `string` | **Required**. name of state |
 
 ## Environment Variables
 
 To run this project, you will need to add the following environment variable to your .env file
 
 `MONGODB_URL=`
-  
+
 ## Run Locally
 
 Clone the project
@@ -112,5 +114,3 @@ Start the server
 ```bash
   yarn dev
 ```
-
-  

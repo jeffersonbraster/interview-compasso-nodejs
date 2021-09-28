@@ -6,9 +6,11 @@ const router = express.Router();
 
 router.post("/cliente", validRegisterClient, clienteController.register);
 
+router.get("/cliente/name/:param", clienteController.getClienteByName);
+
 router
   .route("/cliente/:param")
-  .get(clienteController.getClienteByIdAndName)
+  .get(clienteController.getClienteById)
   .patch(validUpdateClient, clienteController.updateCliente)
   .delete(clienteController.deleteCliente);
 
